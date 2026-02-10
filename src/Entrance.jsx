@@ -4,12 +4,17 @@ import { useAuth } from "./AuthContext";
 export default function Entrance() {
   const { signup } = useAuth();
 
+  const speakName = (formData) => {
+    const name = formData.get("name");
+    signup({ username: name });
+  };
+
   return (
     <>
       <h1>Cave Entrance</h1>
       <p>Your journey has brought you to the base of a rocky mountain.</p>
       <p>
-        The quickest path forward is through the mountain's winding tunnels, but
+        The quickest path forward is through the mountains winding tunnels, but
         a sturdy metal gate sits closed before you.
       </p>
       <p>
@@ -17,7 +22,7 @@ export default function Entrance() {
         fixed on you. The one on the left opens its mouth, and with a deep,
         rumbling voice, it asks, "Who approaches? Speak your name."
       </p>
-      <form>
+      <form action={speakName}>
         <label>
           Name
           <input name="name" />
